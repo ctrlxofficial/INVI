@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <script>
+        if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
+        window.scrollTo(0, 0);
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#030614">
+    <title>دعوة خطوبة | Hamdy & Safaa</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Aref+Ruqaa+Ink:wght@400;700&family=Cairo:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=7">
+</head>
+<body>
+
+    <!-- Audio Player — preload=none prevents blocking page load on weak devices -->
+    <audio id="bg-music" loop preload="none">
+        <source src="assets/romantic.mp3" type="audio/mpeg">
+    </audio>
+    <button id="music-btn" class="music-btn" aria-label="Music">
+        <div class="mb-bars"><div class="mb-b"></div><div class="mb-b"></div><div class="mb-b"></div><div class="mb-b"></div></div>
+    </button>
+
+    <!-- Invisible Overlay Button for Starting -->
+    <div id="start-journey-btn">
+        <div id="start-hint">
+            <span>المس لتبدأ الرحلة</span>
+            <div class="sh-arrow"></div>
+        </div>
+    </div>
+
+    <!-- MAIN SCROLL CONTAINER -->
+    <div id="cinema-container">
+        
+        <!-- Lightweight Static Stars (CSS based) -->
+        <div class="static-stars"></div>
+
+        <!-- Background Image (Palace) -->
+        <div id="palace-bg" style="background-image: url('assets/hall.jpg')"></div>
+        <div id="palace-overlay"></div>
+
+        <!-- Texts -->
+        <div id="text-1" class="cinema-text">في ليلة من أجمل الليالي...</div>
+        <div id="text-2" class="cinema-text">التقى النور بالنور...</div>
+
+        <!-- The Light Orbs -->
+        <div id="orb-s" class="orb orb-silver"><div class="orb-name">Safaa</div></div>
+        <div id="orb-h" class="orb orb-gold"><div class="orb-name">Hamdy</div></div>
+
+        <!-- The Light Flash (Optimized) -->
+        <div id="flash"></div>
+
+        <!-- The Final Invitation Card -->
+        <div id="invitation-card" class="premium-card">
+            
+            <div class="card-crown">
+                <svg width="40" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            </div>
+            
+            <!-- Photos & Names (Hamdy Left, Safaa Right) -->
+            <div class="couple-profile" dir="ltr">
+                <!-- Hamdy (Groom) -->
+                <div class="profile-col">
+                    <div class="c-photo"><img src="assets/hamdy.jpg" alt="Hamdy" decoding="async"></div>
+                    <div class="p-name">Hamdy</div>
+                </div>
+                
+                <!-- Hollow Heart Icon -->
+                <div class="profile-heart">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                </div>
+
+                <!-- Safaa (Bride) -->
+                <div class="profile-col">
+                    <div class="c-photo"><img src="assets/safaa.jpg" alt="Safaa" decoding="async"></div>
+                    <div class="p-name">Safaa</div>
+                </div>
+            </div>
+
+            <p class="card-event">حفل الخطوبة</p>
+
+            <div class="card-divider"></div>
+
+            <!-- Professional Details -->
+            <div class="card-details">
+                <div class="cd-row">
+                    <span class="cd-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                    </span>
+                    <span class="cd-text">السبت، ٢٤ أكتوبر ٢٠٢٦</span>
+                </div>
+                <div class="cd-row">
+                    <span class="cd-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                    </span>
+                    <span class="cd-text">الساعة ٨:٠٠ مساءً</span>
+                </div>
+                <div class="cd-row">
+                    <span class="cd-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    </span>
+                    <span class="cd-text">قاعة HEAVEN HALL - محلة روح</span>
+                </div>
+            </div>
+
+            <!-- Countdown -->
+            <div class="card-countdown">
+                <div class="cbox"><div id="c-days" class="cnum">00</div><div class="clbl">يوم</div></div>
+                <div class="cbox"><div id="c-hours" class="cnum">00</div><div class="clbl">ساعة</div></div>
+                <div class="cbox"><div id="c-mins" class="cnum">00</div><div class="clbl">دقيقة</div></div>
+                <div class="cbox"><div id="c-secs" class="cnum">00</div><div class="clbl">ثانية</div></div>
+            </div>
+
+            <!-- Map Button -->
+            <a href="https://maps.app.goo.gl/m1myxHRVWV83SH6XA?g_st=ic" target="_blank" class="card-map-btn">
+                افتح الخريطة للوصول
+            </a>
+
+            <div class="card-footer">في انتظاركم لتكتمل فرحتنا 🤍</div>
+        </div>
+
+    </div>
+
+    <!-- Only Core GSAP and ScrollToPlugin for Auto-Scroll Video Effect -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+    <script src="script.js?v=6"></script>
+</body>
+</html>

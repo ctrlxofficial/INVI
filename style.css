@@ -1,0 +1,263 @@
+/* ============================================
+   HEAVEN // 30.08 — The "Ultra-Light Cinematic Video"
+   ============================================ */
+
+:root {
+    --bg-dark: #030614;
+    --gold: #D4AF37;
+    --gold-light: #E8D399; /* Pure smooth gold */
+    --white: #FFFFFF;
+    
+    --f-title: 'Aref Ruqaa Ink', serif;
+    --f-en: 'Cormorant Garamond', serif;
+    --f-body: 'Cairo', sans-serif;
+}
+
+html, body {
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+    overscroll-behavior-y: none; /* Prevents iOS rubber-banding from breaking the scroll animation */
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    background-color: var(--bg-dark);
+    font-family: var(--f-body);
+    color: var(--white);
+}
+
+#start-journey-btn {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    z-index: 9999;
+    cursor: pointer;
+    /* Invisible background, just acts as a massive click target */
+    background: transparent;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+#start-hint {
+    position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 15px;
+    color: var(--gold-light); font-family: var(--f-body); font-size: 1.1rem; letter-spacing: 1px;
+    animation: bounceHint 2s infinite ease-in-out;
+    text-shadow: 0 0 10px rgba(0,0,0,0.8);
+}
+.sh-arrow {
+    width: 15px; height: 15px;
+    border-bottom: 3px solid var(--gold);
+    border-right: 3px solid var(--gold);
+    transform: rotate(45deg);
+    filter: drop-shadow(0 0 5px rgba(212,175,55,0.8));
+}
+@keyframes bounceHint {
+    0%, 100% { transform: translate(-50%, 0); opacity: 0.9; }
+    50% { transform: translate(-50%, 15px); opacity: 0.4; }
+}
+
+.music-btn {
+    position: fixed; top: 20px; right: 20px; z-index: 100;
+    width: 45px; height: 45px; border-radius: 50%;
+    background: rgba(3, 6, 20, 0.8); border: 1px solid rgba(212, 175, 55, 0.4);
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 3px;
+    transition: all 0.3s;
+}
+.music-btn:hover { border-color: var(--gold); background: rgba(212, 175, 55, 0.2); }
+.mb-bars { display: flex; align-items: flex-end; gap: 3px; height: 16px; }
+.mb-b { width: 2px; background: var(--gold); border-radius: 2px; height: 4px; transition: height 0.2s; }
+.music-btn.playing .mb-b { animation: bounceBar 0.8s infinite alternate ease-in-out; }
+.music-btn.playing .mb-b:nth-child(2) { animation-delay: 0.2s; }
+.music-btn.playing .mb-b:nth-child(3) { animation-delay: 0.4s; }
+.music-btn.playing .mb-b:nth-child(4) { animation-delay: 0.1s; }
+@keyframes bounceBar { 0% { height: 4px; } 100% { height: 16px; } }
+
+/* ── CINEMA CONTAINER (Pinned) ── */
+#cinema-container {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; overflow: hidden;
+    z-index: 1;
+}
+
+/* Static lightweight CSS stars */
+.static-stars {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;
+    background-image: 
+        radial-gradient(1px 1px at 20px 30px, #eee, rgba(0,0,0,0)),
+        radial-gradient(1.5px 1.5px at 40px 70px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 90px 40px, #ddd, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 160px 120px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 240px 80px, #eee, rgba(0,0,0,0)),
+        radial-gradient(1.5px 1.5px at 300px 150px, #fff, rgba(0,0,0,0));
+    background-repeat: repeat;
+    background-size: 350px 350px;
+}
+
+#palace-bg {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background-size: cover; background-position: center;
+    transform-origin: center bottom;
+    z-index: 2; opacity: 0; transform: scale(1.1);
+    will-change: opacity, transform;
+}
+#palace-overlay {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(to bottom, rgba(3,6,20,0.8), rgba(3,6,20,0.3), rgba(3,6,20,1));
+    z-index: 3; opacity: 0;
+    will-change: opacity;
+}
+
+/* ── TEXTS ── */
+.cinema-text {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    font-family: var(--f-title); font-size: clamp(2rem, 8vw, 4rem);
+    color: #FDFBF7;
+    text-shadow: 0 4px 15px rgba(0,0,0,0.9), 0 0 30px rgba(212, 175, 55, 0.8), 0 0 50px rgba(0,0,0,1);
+    font-weight: 700;
+    text-align: center; width: 90%; z-index: 4; opacity: 0;
+}
+
+.orb {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 1px; height: 1px;
+    z-index: 5; opacity: 0;
+    display: flex; justify-content: center; align-items: center;
+    will-change: left, opacity, transform;
+}
+.orb::before {
+    content: ''; position: absolute;
+    width: 120px; height: 120px; border-radius: 50%;
+}
+.orb-gold::before { background: radial-gradient(circle, #D4AF37 0%, rgba(212,175,55,0.4) 30%, transparent 70%); }
+.orb-silver::before { background: radial-gradient(circle, #FFFFFF 0%, rgba(255,255,255,0.4) 30%, transparent 70%); }
+
+.orb-name {
+    position: absolute; 
+    top: 55px; 
+    left: 50%; transform: translateX(-50%);
+    font-family: 'Great Vibes', cursive; 
+    font-size: clamp(2.5rem, 9vw, 3.5rem); 
+    color: #FFFFFF;
+    text-shadow: 0 5px 15px rgba(0,0,0,1), 0 0 20px rgba(0,0,0,0.8), 0 0 40px var(--gold);
+    opacity: 1;
+    white-space: nowrap;
+    font-weight: 400;
+}
+
+/* ── CINEMATIC FLASH (Optimized & Softer) ── */
+#flash {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0);
+    width: 25vw; height: 25vw; border-radius: 50%;
+    background: radial-gradient(circle, #FFFFFF 0%, rgba(212,175,55,0.4) 20%, transparent 60%);
+    z-index: 6; opacity: 0;
+    will-change: opacity, transform;
+}
+/* Horizontal Lens Flare */
+#flash::after {
+    content: ''; position: absolute;
+    top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 150vw; height: 6px;
+    background: radial-gradient(ellipse, #FFFFFF 0%, rgba(212,175,55,0.5) 30%, transparent 70%);
+}
+
+/* ── INVITATION CARD (The Reveal, optimized without backdrop-filter) ── */
+#invitation-card {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -40%);
+    width: 90%; max-width: 420px;
+    background: rgba(8, 12, 22, 0.95); /* Solid elegant dark background for performance */
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-radius: 20px;
+    padding: clamp(25px, 6vw, 35px) clamp(15px, 4vw, 25px);
+    text-align: center;
+    z-index: 10; opacity: 0;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.9);
+}
+
+.card-crown { display: flex; justify-content: center; margin-bottom: 25px; opacity: 0.9; }
+
+.couple-profile {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: start;
+    gap: 5px;
+    margin-bottom: 25px;
+    width: 100%;
+}
+.profile-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+.c-photo {
+    width: clamp(85px, 24vw, 115px); 
+    height: clamp(85px, 24vw, 115px);
+    border-radius: 50%;
+    border: 2px solid var(--gold); 
+    padding: 4px;
+    background: var(--bg-dark); 
+    box-shadow: 0 15px 30px rgba(0,0,0,0.6);
+}
+.c-photo img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; object-position: top; }
+
+.p-name {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(2.2rem, 8vw, 3.2rem);
+    color: var(--gold-light);
+    text-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+    line-height: 1;
+    text-align: center;
+}
+
+.profile-heart {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: clamp(85px, 24vw, 115px); /* Matches photo height perfectly to align dead center */
+    color: var(--gold);
+}
+.profile-heart svg {
+    width: clamp(22px, 5vw, 30px);
+    height: clamp(22px, 5vw, 30px);
+    /* Removed filter:drop-shadow — too expensive on weak GPUs */
+}
+
+.card-event { font-family: var(--f-body); font-weight: 400; font-size: clamp(1rem, 4vw, 1.2rem); letter-spacing: 2px; color: #FFFFFF; margin-bottom: 25px; }
+
+.card-divider { height: 1px; width: 50%; margin: 0 auto 25px; background: linear-gradient(to right, transparent, rgba(212,175,55,0.6), transparent); }
+
+/* Upgraded Detail Rows */
+.card-details { display: flex; flex-direction: column; gap: 10px; margin-bottom: 25px; }
+.cd-row { 
+    display: flex; align-items: center; justify-content: center; gap: 10px; 
+    background: rgba(255,255,255,0.03); 
+    padding: clamp(10px, 3vw, 14px); 
+    border-radius: 12px; 
+    border: 1px solid rgba(212,175,55,0.15); 
+}
+.cd-icon { color: var(--gold); display: flex; align-items: center; }
+.cd-text { font-size: clamp(0.9rem, 3.8vw, 1rem); color: #FFFFFF; font-weight: 400; letter-spacing: 0.5px; text-align: center; }
+
+/* Upgraded Countdown */
+.card-countdown { display: flex; justify-content: space-between; gap: clamp(6px, 1.5vw, 10px); direction: ltr; margin-bottom: 30px; width: 100%; }
+.cbox { 
+    flex: 1; /* Perfectly equal widths */
+    background: rgba(255,255,255,0.03); 
+    border: 1px solid rgba(212,175,55,0.25); 
+    border-radius: 12px; 
+    padding: 10px 0;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; 
+}
+.cnum { font-family: var(--f-en); font-size: clamp(1.3rem, 5vw, 1.7rem); color: #FFFFFF; line-height: 1.1; font-weight: 600; }
+.clbl { font-size: clamp(0.55rem, 2.5vw, 0.65rem); color: var(--gold); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+
+/* Refined Map Button */
+.card-map-btn {
+    display: flex; justify-content: center; align-items: center; width: 100%; padding: clamp(12px, 4vw, 16px);
+    background: rgba(212, 175, 55, 0.05); /* Slight elegant tint */
+    color: var(--gold-light); font-weight: 600; font-size: clamp(0.95rem, 4vw, 1.1rem);
+    text-decoration: none; border-radius: 12px; /* Matches other boxes precisely */
+    border: 1px solid var(--gold);
+    transition: all 0.3s ease;
+}
+.card-map-btn:hover { background: var(--gold); color: var(--bg-dark); }
+
+.card-footer { margin-top: 20px; font-size: 0.85rem; color: rgba(255,255,255,0.5); font-weight: 300; }
